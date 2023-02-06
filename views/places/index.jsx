@@ -3,7 +3,7 @@ const Def = require('../default')
 
 
 function index(data) {
-  let placesFormatted = data.places.map((place) => {
+  let placesFormatted = data.places.map((place, index) => {
     return (
       <div className="col-sm-6">
         <h2>
@@ -18,6 +18,13 @@ function index(data) {
         <p className="text-center">
           Located in {place.city}, {place.state}
         </p>
+          <a href={`/places/${data.id}/edit`} className="btn btn-warning"> 
+           Edit
+        </a>     
+        <form method= "POST" action={'/places/${data.id}?_method=DELETE'}/>
+          <button type="submit" className="btn btn-danger">
+            Delete
+          </button>
       </div>
     )
   })
