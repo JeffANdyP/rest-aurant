@@ -3,7 +3,7 @@ const places= require('../models/places.js')
 
 
 router.get('/', (req,res) =>{            
-    res.render('places/index', {places})
+  res.render('places/index', {places})
 } )
 
 // POST A NEW PLACE
@@ -22,6 +22,49 @@ router.post('/', (req, res) => {
   places.push(req.body)
   res.redirect('/places')
 })
+// get the new places index.jsx
+router.get('/new', (req, res) => {
+  res.render('places/new')
+})
+
+
+// get the show view (show.jsx)
+router.get('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN (id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else{
+    res.render('places', { place: places[id], id })
+  }
+})
+
+// router.put('/:id', (req, res) => {
+  //   db.Place.findByIdAndUpdate(req.params.id, req.body)
+  //       .then(() => {
+    //           res.redirect(`/places/${req.params.id}`)
+    //       })
+    //       .catch(err => {
+      //           console.log('err', err)
+      //           res.render('error404')
+//       })
+//     }
+// )
+router.get('/:id/edit', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    res.render('places/edit', { place: places[id] })
+  }
+})
 
 // DELETE A PLACE
 router.delete('/:id', (req, res) => {
@@ -38,38 +81,6 @@ router.delete('/:id', (req, res) => {
   }
 })
 
-router.get('/:id/edit', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-      res.render('error404')
-  }
-  else if (!places[id]) {
-      res.render('error404')
-  }
-  else {
-    res.render('places/edit', { place: places[id] })
-  }
-})
-
-
-// get the new places index.jsx
-router.get('/new', (req, res) => {
-  res.render('places/new')
-})
-
-// get the show view (show.jsx)
-router.get('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN (id)) {
-    res.render('error404')
-  }
-  else if (!places[id]) {
-    res.render('error404')
-  }
-  else{
-    res.render('places', { place: places[id], id })
-  }
-})
 
 
 
@@ -78,3 +89,4 @@ router.get('/:id', (req, res) => {
 
 
 module.exports=router
+
