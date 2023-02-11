@@ -1,12 +1,12 @@
 const React = require('react')
-const Def = require('../default')
+const Def = require('./default')
 
 function show(data) {
   return (
     <Def>
       <main>
 
-        <h2>{data.place.couisines}</h2>
+        {/* <h2>{data.place.cuisines}</h2>
         <h3>{data.place.pic}</h3>
       <div> 
         <h1>{data.place.name}</h1>
@@ -14,7 +14,7 @@ function show(data) {
         <input type= "text" class="comment" id="rating" placeholder="not rated" />
         <label htmlFor="placerate"></label>
             </div>
-            <div></div>
+            <div></div> */}
 
 
         {/* <a href={`/places/${data.id}/edit`} className="btn btn-warning"> 
